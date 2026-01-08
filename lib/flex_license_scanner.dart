@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'src/domain/entities/scanner_config.dart';
 import 'src/presentation/license_painter.dart';

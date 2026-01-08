@@ -15,9 +15,9 @@ class LicensePainter extends CustomPainter {
         (Colors.black.b * 255.0).round().clamp(0, 255),
         config.overlayOpacity,
       );
-    
-    // 1. Calculate the horizontal rectangle dimensions
-    double width = size.width * 0.9; // 90% of screen width
+
+    /// 1. Calculate the horizontal rectangle dimensions
+    double width = size.width * 0.9; /// 90% of screen width
     double height = width / config.aspectRatio;
 
     final rect = Rect.fromCenter(
@@ -26,22 +26,23 @@ class LicensePainter extends CustomPainter {
       height: height,
     );
 
-    // 2. Draw overlay with a hole
+    /// 2. Draw overlay with a hole
     canvas.drawPath(
       Path.combine(
         PathOperation.difference,
         Path()..addRect(Rect.fromLTWH(0, 0, size.width, size.height)),
-        Path()..addRRect(RRect.fromRectAndRadius(rect, const Radius.circular(16))),
+        Path()
+          ..addRRect(RRect.fromRectAndRadius(rect, const Radius.circular(16))),
       ),
       paint,
     );
 
-    // 3. Draw the "Margin" Guide borders
+    /// 3. Draw the "Margin" Guide borders
     final borderPaint = Paint()
       ..color = config.borderColor
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3.0;
-      
+
     canvas.drawRRect(
       RRect.fromRectAndRadius(rect, const Radius.circular(16)),
       borderPaint,
