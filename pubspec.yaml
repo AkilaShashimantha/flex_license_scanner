@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  google_mlkit_text_recognition: ^0.10.0
+  image: ^4.2.0 # For cropping the image to your frame  
     
 topics:
   - ocr
@@ -17,7 +19,7 @@ topics:
   - scanner
   - camera
   - kyc
-      
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
