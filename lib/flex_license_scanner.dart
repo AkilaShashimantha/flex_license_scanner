@@ -4,6 +4,7 @@ import 'src/presentation/license_painter.dart';
 
 export 'src/domain/entities/scanner_config.dart';
 export 'src/data/datasources/license_ocr_service.dart';
+export 'src/domain/utils/license_parser.dart';
 /// A professional overlay for Driving License OCR scanning.
 class LicenseScannerOverlay extends StatelessWidget {
   final ScannerConfig? config;

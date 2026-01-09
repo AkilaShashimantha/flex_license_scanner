@@ -8,13 +8,8 @@ class LicensePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Color.fromRGBO(
-        (Colors.black.r * 255.0).round().clamp(0, 255),
-        (Colors.black.g * 255.0).round().clamp(0, 255),
-        (Colors.black.b * 255.0).round().clamp(0, 255),
-        config.overlayOpacity,
-      );
+  final paint = Paint()
+    ..color = Colors.black.withOpacity(config.overlayOpacity);
 
     /// 1. Calculate the horizontal rectangle dimensions
     double width = size.width * 0.9; /// 90% of screen width
