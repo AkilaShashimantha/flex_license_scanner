@@ -1,6 +1,6 @@
 name: flex_license_scanner
 description: "A customizable OCR scanning interface for Driving Licenses and ID cards with a rectangular focus frame and laser animation."
-version: 0.0.5
+version: 0.0.6
 homepage: https://github.com/AkilaShashimantha/flex_license_scanner.git
 
 environment:
