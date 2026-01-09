@@ -6,15 +6,12 @@ class LicenseOcrService {
 
   /// Processes the image and returns parsed LicenseData if found
   Future<LicenseData?> processImage(InputImage inputImage) async {
-    try {
-      final RecognizedText recognizedText = await _textRecognizer.processImage(inputImage);
-      
-      // Pass the raw text to the parser we created earlier
-      return LicenseParser.parse(recognizedText.text);
-    } catch (e) {
-      print("OCR Error: $e");
-      return null;
-    }
+ final RecognizedText recognizedText = await _textRecognizer.processImage(inputImage);
+  
+  // DEBUG: Print this to your console to see what the OCR sees
+  print("RAW OCR TEXT: ${recognizedText.text}"); 
+  
+  return LicenseParser.parse(recognizedText.text);
   }
 
   void dispose() {

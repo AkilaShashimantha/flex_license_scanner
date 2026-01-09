@@ -14,21 +14,32 @@ class LicenseData {
 
 class LicenseParser {
   static LicenseData? parse(String rawText) {
-    // We search for the prefixes you identified
     final lines = rawText.split('\n');
     String? lic, nic, issue, expiry;
 
     for (var line in lines) {
-      if (line.contains('5.')) lic = line.replaceAll('5.', '').trim();
-      if (line.contains('4d.')) nic = line.replaceAll('4d.', '').trim();
-      if (line.contains('4a.')) issue = line.replaceAll('4a.', '').trim();
-      if (line.contains('4b.')) expiry = line.replaceAll('4b.', '').trim();
+      final cleanLine = line.trim();
+      
+      // Use Regex to find the fields even if there are small OCR errors
+      if (cleanLine.contains(RegExp(r'5\.\s*'))) {
+        lic = cleanLine.split(RegExp(r'5\.\s*')).last.trim();
+      }
+      if (cleanLine.contains(RegExp(r'4d\.\s*'))) {
+        nic = cleanLine.split(RegExp(r'4d\.\s*')).last.trim();
+      }
+      if (cleanLine.contains(RegExp(r'4a\.\s*'))) {
+        issue = cleanLine.split(RegExp(r'4a\.\s*')).last.trim();
+      }
+      if (cleanLine.contains(RegExp(r'4b\.\s*'))) {
+        expiry = cleanLine.split(RegExp(r'4b\.\s*')).last.trim();
+      }
     }
 
-    if (lic != null && nic != null) {
+    // Return data if at least the License or NIC is found
+    if (lic != null || nic != null) {
       return LicenseData(
-        licenseNumber: lic,
-        nicNumber: nic,
+        licenseNumber: lic ?? "Not detected",
+        nicNumber: nic ?? "Not detected",
         issueDate: issue ?? "",
         expiryDate: expiry ?? "",
       );
