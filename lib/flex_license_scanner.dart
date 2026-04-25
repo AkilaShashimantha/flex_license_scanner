@@ -2,20 +2,28 @@ import 'package:flutter/material.dart';
 import 'src/domain/entities/scanner_config.dart';
 import 'src/presentation/license_painter.dart';
 
+// Exports
 export 'src/domain/entities/scanner_config.dart';
 export 'src/data/datasources/license_ocr_service.dart';
 export 'src/domain/utils/license_parser.dart';
-/// A professional overlay for Driving License OCR scanning.
-class LicenseScannerOverlay extends StatelessWidget {
-  final ScannerConfig? config;
+export 'src/presentation/license_painter.dart';
+export 'src/presentation/license_scanner_overlay_animated.dart';
 
-  const LicenseScannerOverlay({super.key, this.config});
+/// A simple static overlay for Driving License OCR scanning.
+/// For animated version, use [LicenseScannerOverlayAnimated].
+class LicenseScannerOverlay extends StatelessWidget {
+  final ScannerConfig config;
+
+  const LicenseScannerOverlay({
+    super.key,
+    this.config = const ScannerConfig(),
+  });
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
       size: Size.infinite,
-      painter: LicensePainter(config ?? ScannerConfig()),
+      painter: LicensePainter(config),
     );
   }
 }
